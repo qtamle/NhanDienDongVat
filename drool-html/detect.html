@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Animal Detection</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!-- Fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- Responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+        .custom-padding {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        };
+        .footer_section {
+            background-color: #e7d619;
+            text-align: center;
+            padding: 20px 0;
+            justify-content: end;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section starts -->
+    <header style="background-color: #e7d619;" class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="">
+                    
+                </a>
+                <div class="User_option">
+                    <form class="form-inline my-2 mb-3 mb-lg-0">
+                        <input type="search" placeholder="Search">
+                    </form>
+                </div>
+
+                <div class="custom_menu-btn">
+                    <button onclick="openNav()">
+                        <span class="s-1"></span>
+                        <span class="s-2"></span>
+                        <span class="s-3"></span>
+                    </button>
+                </div>
+                <div id="myNav" class="overlay" style="background-color: #000; opacity: 0.8;">
+                    <div class="overlay-content">
+                        <a href="index.html">Home</a>
+                        <a href="detect.html">Detect</a>
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End header section -->
+
+    <section class="slider_section", style="min-height: 82.7vh;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Column 1: Details -->
+                            <div class="col-md-4 offset-md-1">
+                                <div class="detail-box">
+                                    <div class="number">
+                                        <h5>Giảng viên: Nguyễn Thanh Hiếu</h5>
+                                    </div>
+                                    <h1>
+                                        Nhóm 6 <br>
+                                        <span>Lập Trình Python</span>
+                                    </h1>
+                                    <p>Animals Detection</p>
+                                    <div class="btn-box">
+                                        <!-- Check if user is logged in -->
+                                        <script>
+                                            if (!localStorage.getItem('user_id')) {
+                                                alert('Bạn chưa đăng nhập');
+                                                window.location.href = 'login.html';
+                                            }
+                                        </script>
+                                        <!-- Form for file upload -->
+                                        <form id="uploadForm" action="/upload_image" method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <input id="file-upload" type="file" name="file" accept="image/*" required style="display: none;" onchange="previewImage(event)" />
+                                                <label for="file-upload" class="custom-file-upload btn-1">Chọn hình</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="threshold">Ngưỡng nhận diện (0-1):</label>
+                                                <input type="number" id="threshold" name="threshold" min="0" max="1" step="0.1" value="0.5" required>
+                                            </div>
+                                            <button type="submit" class="btn-2">Nhận diện</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column 2: Image preview -->
+                            <div class="col-md-3 custom-padding">
+                                <h2>Hình ban đầu:</h2>
+                                <div class="img-box mt-3">
+                                    <img id="selectedImage" src="images/slider-img.png" alt="Slider Image" class="img-fluid">
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Detection Result -->
+                            <div class="col-md-3 custom-padding">
+                                <div class="result" id="result" style="display: none;">
+                                    <h2>Kết quả nhận diện:</h2>
+                                    <img id="outputImage" class="img-fluid mt-3" style="display: none;" alt="Detected Image">
+                                    <button id="saveHistory" class="btn btn-success mt-3" style="display: none;">Lưu lịch sử</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </section>
+        <!-- Footer section -->
+    <section class="container-fluid footer_section">
+        <p>Developed by <a href="https://github.com/Duonganhdu2002">Wydanhdu</a></p>
+    </section>
+
+    <!-- JavaScript files -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("myNav").classList.toggle("menu_width");
+            document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
+        }
+
+        function previewImage(event) {
+            const selectedImage = document.getElementById('selectedImage');
+            selectedImage.src = URL.createObjectURL(event.target.files[0]);
+            selectedImage.style.display = 'block';
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const userId = localStorage.getItem('user_id');
+            formData.append('user_id', userId);
+
+            fetch('http://127.0.0.1:5000/detect', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const outputImage = document.getElementById('outputImage');
+                outputImage.src = URL.createObjectURL(blob);
+                outputImage.style.display = 'block';
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('saveHistory').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('saveHistory').addEventListener('click', function () {
+            const userId = localStorage.getItem('user_id');
+
+            fetch('http://127.0.0.1:5000/log_request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: userId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error logging request:', error);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+# For app
+scikit-learn
+xmltodict
+pycocotools
+Flask
+flask-cors
+flask-bcrypt
+Pillow
+torch
+torchvision
+numpy
+opencv-python-headless
+
+# For training
+# torch
+# torchvision
+# opencv-python
+# tqdm
+
+# For training 2
+# numpy
+# pandas
+# matplotlib
+# scikit-image
+# scikit-learn
+# tensorflow
+# mlxtend
+# imageai

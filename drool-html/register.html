@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Site Metas -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <!-- Fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Responsive style -->
+    <link href="css/responsive.css" rel="stylesheet">
+</head>
+
+<body class="sub_page">
+
+    <!-- Header section starts -->
+    <header style="background-color: #e7d619;" class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="">
+                </a>
+                <div class="" id="">
+                    <div class="User_option">
+                        <form class="form-inline my-2 mb-3 mb-lg-0">
+                            <input type="search" placeholder="Search">
+                        </form>
+                    </div>
+
+                    <div class="custom_menu-btn">
+                        <button onclick="openNav()">
+                            <span class="s-1"></span>
+                            <span class="s-2"></span>
+                            <span class="s-3"></span>
+                        </button>
+                    </div>
+                    <div id="myNav" class="overlay" style="background-color: #000; opacity: 0.8;">
+                        <div class="overlay-content">
+                            <a href="index.html">Home</a>
+                            <a href="detect.html">Detect</a>
+                            <a href="about.html">About</a>
+                            <a href="contact.html">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End header section -->
+
+    <!-- Register section -->
+    <section class="register_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>Register</h2>
+            </div>
+            <div class="register_form">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit">
+                            Register
+                        </button>
+                    </div>
+                    <p class="mt-3">Already have an account? <a href="login.html">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- End register section -->
+
+    <!-- Info section -->
+    <section class="info_section">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Info -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="info_contact">
+                        <h5>CONTACT INFO</h5>
+                        <div>
+                            <img src="images/call.png" alt="" />
+                            <p>+01 1234567890</p>
+                        </div>
+                        <div>
+                            <img src="images/mail.png" alt="" />
+                            <p>demo@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Opening Hours -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="info_time">
+                        <h5>Opening Hours Shop</h5>
+                        <div>
+                            <p>Monday to Friday</p>
+                        </div>
+                        <div>
+                            <p>07:00 am to 04:00 pm</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Social Media -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="info_social">
+                        <h5>Social Media</h5>
+                        <div class="social_container">
+                            <div>
+                                <a href="">
+                                    <img src="images/fb.png" alt="" />
+                                </a>
+                            </div>
+                            <div>
+                                <a href="">
+                                    <img src="images/twitter.png" alt="" />
+                                </a>
+                            </div>
+                            <div>
+                                <a href="">
+                                    <img src="images/linkedin.png" alt="" />
+                                </a>
+                            </div>
+                            <div>
+                                <a href="">
+                                    <img src="images/instagram.png" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="info_form pl-lg-4">
+                        <h5>Newsletter</h5>
+                        <form action="">
+                            <input type="text" placeholder="Enter Your Email" />
+                            <button type="submit">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End info section -->
+
+    <!-- Footer section -->
+    <section class="container-fluid footer_section">
+        <p>
+            Developed by <a href="https://github.com/Duonganhdu2002">Wydanhdu</a>
+        </p>
+    </section>
+    <!-- End footer section -->
+
+    <!-- JavaScript files -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("myNav").classList.toggle("menu_width");
+            document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('http://127.0.0.1:5000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
