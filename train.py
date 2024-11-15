@@ -82,7 +82,7 @@ def collate_fn(batch):
 
 transform = transforms.Compose([transforms.ToTensor()])
 dataset = CustomDataset(
-    image_dir="animalpose_keypoint_new/animalpose_image_part2",
+    image_dir="animal",
     label_file="animalpose_keypoint_new/keypoints.json",
     transforms=transform
 )
@@ -93,9 +93,9 @@ test_size = len(dataset) - train_size - val_size
 
 train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
 
-train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True, collate_fn=collate_fn)
-val_loader = DataLoader(val_dataset, batch_size=2, shuffle=False, collate_fn=collate_fn)
-test_loader = DataLoader(test_dataset, batch_size=2, shuffle=False, collate_fn=collate_fn)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, collate_fn=collate_fn)
+val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, collate_fn=collate_fn)
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, collate_fn=collate_fn)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
