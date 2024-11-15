@@ -30,7 +30,7 @@ model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=torchvision
 model.eval()
 
 ANIMAL_CLASSES = [
-    'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+    'cat', 'dog', 'horse', 'sheep', 'cow',
     'elephant', 'bear', 'zebra', 'giraffe'
 ]
 
