@@ -1,2 +1,7 @@
 # model/best_model.pth
 # model/full_model.pth
+# Ignore data directory and model files
+animal/
+# Ignore model files
+# model/*.pth
+*.pth
