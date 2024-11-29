@@ -141,6 +141,8 @@ def detect():
     
     _, img_encoded = cv2.imencode('.jpg', img_with_boxes)
     img_bytes = img_encoded.tobytes()
+
+    log_request(user_id)
     
     return send_file(io.BytesIO(img_bytes), mimetype='image/jpeg')
 
